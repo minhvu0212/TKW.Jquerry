@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PhoneCase Shop - Phụ kiện điện thoại chính hãng, giá tốt" />
+  <title>PhoneCase Shop - Phụ kiện điện thoại</title>
+
+  <!-- Tailwind CSS (hỗ trợ trình bày) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- CSS tuỳ biến -->
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- ========== APP VUE (toàn bộ nội dung cần reactivity nằm trong #app) ========== -->
+  <div id="app">
+
+    <!-- ========== HEADER ========== -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="#" class="text-xl font-bold text-blue-600 flex items-center gap-2">
+          📱 PhoneCase
+        </a>
+
+        <ul class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <li><a href="#trang-chu" class="hover:text-blue-600 transition">Trang chủ</a></li>
+          <li><a href="#san-pham" class="hover:text-blue-600 transition">Sản phẩm</a></li>
+          <li><a href="#khuyen-mai" class="hover:text-blue-600 transition">Khuyến mãi</a></li>
+          <li><a href="#lien-he" class="hover:text-blue-600 transition">Liên hệ</a></li>
+        </ul>
+
+        <!-- Số lượng giỏ hàng do Vue quản lý bằng {{ cartCount }} -->
+        <div class="flex items-center gap-2 cursor-pointer">
+          <span class="relative">
+            🛒
+            <span class="absolute -top-2 -right-3 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+              {{ cartCount }}
+            </span>
+          </span>
+          <span class="text-sm font-medium hidden sm:inline">Giỏ hàng ({{ cartCount }})</span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ========== HERO / BANNER ========== -->
+    <section id="trang-chu" class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-10">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-3xl md:text-4xl font-bold mb-2">Phụ kiện điện thoại chính hãng</h1>
+        <p class="opacity-90">Ốp lưng, tai nghe, sạc nhanh, cáp – tất cả trong một chỗ</p>
+      </div>
+    </section>
+
+    <!-- ========== NỘI DUNG CHÍNH: SẢN PHẨM + GIỎ HÀNG ========== -->
+    <section id="san-pham" class="container mx-auto px-4 py-10">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Cột sản phẩm (chiếm 2/3) -->
+        <div class="lg:col-span-2">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <h2 class="text-2xl font-bold">Sản phẩm</h2>
+
+            <!-- Ô tìm kiếm (v-model) -->
+            <div class="relative">
+              <input 
+                type="text" 
+                v-model="tuKhoa" 
+                placeholder="Tìm kiếm sản phẩm..." 
+                class="border border-slate-300 rounded-lg pl-10 pr-4 py-2 w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <span class="absolute left-3 top-2.5 text-slate-400">🔍</span>
+            </div>
+          </div>
+
+          <!-- Danh sách sản phẩm (v-for + computed danhSachLoc) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <article 
+              v-for="sp in danhSachLoc" 
+              :key="sp.id"
+              class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
+            >
+              <img :src="sp.anh" :alt="sp.ten" class="w-full h-44 object-cover" />
+              <div class="p-4">
+                <h3 class="font-semibold text-lg mb-1">{{ sp.ten }}</h3>
+                <p class="text-slate-500 text-sm mb-2 line-clamp-2">{{ sp.moTa }}</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-blue-600 font-bold">{{ formatGia(sp.gia) }}</span>
+                  <button 
+                    @click="themVaoGio(sp)"
+                    class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1.5 rounded-lg transition"
+                  >
+                    + Thêm vào giỏ
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Không tìm thấy -->
+          <p v-if="danhSachLoc.length === 0" class="text-center text-slate-500 py-10">
+            Không tìm thấy sản phẩm phù hợp với từ khóa "{{ tuKhoa }}"
+          </p>
+        </div>
+
+        <!-- ASIDE: Giỏ hàng của bạn -->
+        <aside class="lg:col-span-1">
+          <div class="bg-white rounded-xl shadow-md p-5 sticky top-24">
+            <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+              🛒 Giỏ hàng của bạn
+            </h3>
+
+            <!-- Giỏ trống -->
+            <div v-if="cart.length === 0" class="text-center py-8 text-slate-400">
+              <p class="text-4xl mb-2">🛍️</p>
+              <p>Giỏ hàng trống</p>
+              <p class="text-sm mt-1">Hãy thêm sản phẩm bạn yêu thích</p>
+            </div>
+
+            <!-- Có sản phẩm trong giỏ -->
+            <div v-else>
+              <ul class="space-y-3 max-h-80 overflow-y-auto">
+                <li 
+                  v-for="(item, index) in cart" 
+                  :key="index"
+                  class="flex items-center gap-3 border-b border-slate-100 pb-3"
+                >
+                  <img :src="item.anh" class="w-12 h-12 rounded object-cover" />
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium truncate">{{ item.ten }}</p>
+                    <p class="text-blue-600 text-sm font-semibold">{{ formatGia(item.gia) }}</p>
+                  </div>
+                  <button 
+                    @click="xoaKhoiGio(index)"
+                    class="text-red-500 hover:text-red-700 text-lg"
+                    title="Xóa"
+                  >
+                    ✕
+                  </button>
+                </li>
+              </ul>
+
+              <!-- Tổng tiền (computed) -->
+              <div class="mt-4 pt-4 border-t border-slate-200">
+                <div class="flex justify-between items-center mb-3">
+                  <span class="font-medium">Tổng cộng:</span>
+                  <span class="text-xl font-bold text-blue-600">{{ formatGia(tongTien) }}</span>
+                </div>
+                <button class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 rounded-lg transition">
+                  Thanh toán
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ========== KHUYẾN MÃI HÔM NAY (tĩnh) ========== -->
+    <section id="khuyen-mai" class="bg-blue-600 text-white py-8">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-2xl font-bold mb-2">🎉 GET 20% OFF ALL CASES! LIMITED TIME OFFER</h2>
+        <p class="opacity-90">Áp dụng đến hết tháng này – Chỉ cần nhập mã <strong>CASE20</strong> khi thanh toán</p>
+      </div>
+    </section>
+
+  </div><!-- /#app -->
+
+  <!-- ========== FOOTER ========== -->
+  <footer id="lien-he" class="bg-slate-900 text-slate-300 py-10">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+        <div>
+          <h4 class="font-bold text-white mb-3">ABOUT</h4>
+          <p>PhoneCase Shop chuyên cung cấp phụ kiện điện thoại chính hãng, bảo hành 12 tháng.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white mb-3">SUPPORT</h4>
+          <ul class="space-y-1">
+            <li><a href="#" class="hover:text-white">Hướng dẫn mua hàng</a></li>
+            <li><a href="#" class="hover:text-white">Chính sách đổi trả</a></li>
+            <li><a href="#" class="hover:text-white">Bảo hành</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white mb-3">LIÊN HỆ</h4>
+          <p>📍 456 Lê Lợi, Q.1, TP.HCM</p>
+          <p>📞 0909 888 999</p>
+          <p>✉️ support@phonecase.vn</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white mb-3">MẠNG XÃ HỘI</h4>
+          <div class="flex gap-4">
+            <a href="#" class="hover:text-white">Facebook</a>
+            <a href="#" class="hover:text-white">Instagram</a>
+            <a href="#" class="hover:text-white">Shopee</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-slate-700 mt-8 pt-6 text-center text-xs text-slate-500">
+        © 2024 PhoneCase Shop. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vue 3 CDN (PHẢI đặt trước app.js) -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- App logic -->
+  <script src="../js/app.js"></script>
+</body>
+</html>

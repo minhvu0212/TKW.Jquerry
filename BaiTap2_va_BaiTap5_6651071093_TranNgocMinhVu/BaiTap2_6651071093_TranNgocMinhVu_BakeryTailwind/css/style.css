@@ -1,0 +1,25 @@
+/* 
+  CSS bổ sung cho phần Tailwind chưa hỗ trợ sẵn 
+  (ví dụ animation tùy biến, smooth scroll...)
+*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animation nhẹ khi hover card (bổ sung) */
+article:hover img {
+  transform: scale(1.03);
+  transition: transform 0.4s ease;
+}
+
+article img {
+  transition: transform 0.4s ease;
+}
+
+/* Custom focus ring nếu cần tinh chỉnh thêm */
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.25);
+}

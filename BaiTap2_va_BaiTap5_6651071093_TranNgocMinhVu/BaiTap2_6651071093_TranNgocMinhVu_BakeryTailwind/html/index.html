@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Tiệm Bánh Ngọt Hương Vị Thủ Công - bánh ngọt handmade chất lượng cao tại thành phố Hồ Chí Minh"
+    />
+    <title>Tiệm Bánh Ngọt Hương Vị Thủ Công</title>
+
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSS tuỳ biến bổ sung -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body class="bg-stone-50 text-stone-800 font-sans">
+    <!-- ========== HEADER / NAVIGATION ========== -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- Logo -->
+        <a href="#" class="text-2xl font-bold text-amber-700 tracking-tight">
+          🥐 Atelier Sucré
+        </a>
+
+        <!-- Menu desktop -->
+        <ul
+          id="desktop-menu"
+          class="hidden md:flex items-center gap-8 text-sm font-medium"
+        >
+          <li>
+            <a href="#trang-chu" class="hover:text-amber-700 transition"
+              >Trang chủ</a
+            >
+          </li>
+          <li>
+            <a href="#menu" class="hover:text-amber-700 transition"
+              >Menu bánh</a
+            >
+          </li>
+          <li>
+            <a href="#cau-chuyen" class="hover:text-amber-700 transition"
+              >Câu chuyện</a
+            >
+          </li>
+          <li>
+            <a href="#dat-banh" class="hover:text-amber-700 transition"
+              >Đặt bánh</a
+            >
+          </li>
+          <li>
+            <a href="#lien-he" class="hover:text-amber-700 transition"
+              >Liên hệ</a
+            >
+          </li>
+        </ul>
+
+        <!-- Hamburger (chỉ hiện trên mobile) -->
+        <button
+          id="hamburger"
+          class="md:hidden p-2 rounded-lg hover:bg-stone-100"
+          aria-label="Mở menu"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Menu mobile (ẩn mặc định) -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-t border-stone-100"
+      >
+        <ul class="flex flex-col px-6 py-4 gap-3 text-sm font-medium">
+          <li>
+            <a href="#trang-chu" class="block py-2 hover:text-amber-700"
+              >Trang chủ</a
+            >
+          </li>
+          <li>
+            <a href="#menu" class="block py-2 hover:text-amber-700"
+              >Menu bánh</a
+            >
+          </li>
+          <li>
+            <a href="#cau-chuyen" class="block py-2 hover:text-amber-700"
+              >Câu chuyện</a
+            >
+          </li>
+          <li>
+            <a href="#dat-banh" class="block py-2 hover:text-amber-700"
+              >Đặt bánh</a
+            >
+          </li>
+          <li>
+            <a href="#lien-he" class="block py-2 hover:text-amber-700"
+              >Liên hệ</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="trang-chu" class="container mx-auto px-6 py-12 md:py-20">
+      <div class="flex flex-col md:flex-row items-center gap-10">
+        <!-- Văn bản bên trái -->
+        <div class="flex-1 text-center md:text-left">
+          <h1
+            class="text-4xl md:text-6xl font-bold leading-tight text-stone-900 mb-4"
+          >
+            Hương vị thủ công<br />
+            <span class="text-amber-700">chân thành</span>
+          </h1>
+          <p class="text-stone-600 text-lg mb-8 max-w-md mx-auto md:mx-0">
+            Những ổ bánh ngọt mềm, hương vị đậm đà, được làm thủ công mỗi ngày
+            từ nguyên liệu tươi ngon nhất.
+          </p>
+          <a
+            href="#menu"
+            class="inline-block bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full font-semibold transition shadow-lg hover:shadow-xl"
+          >
+            Xem Menu
+          </a>
+        </div>
+
+        <!-- Ảnh bên phải -->
+        <div class="flex-1">
+          <img
+            src="../images/hero-banh.jpg"
+            alt="Bánh ngọt thủ công"
+            class="rounded-2xl shadow-2xl w-full object-cover max-h-[420px]"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MENU BÁNH ========== -->
+    <!-- 
+    Ghi chú so sánh triết lý:
+    Ở bài này đang tự phối utility-class (rounded-2xl, shadow-lg, overflow-hidden, bg-white, hover:shadow-xl...) 
+    để tạo card, khác với Card component dựng sẵn (card, card-body, card-title...) của Bootstrap ở Bài 1.
+    Đây chính là sự khác biệt giữa "utility-first" (Tailwind) và "component-based" (Bootstrap).
+  -->
+    <section id="menu" class="bg-white py-16">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-3">
+          Menu Bánh
+        </h2>
+        <p class="text-center text-stone-500 mb-12">
+          Những món bánh được yêu thích nhất tại tiệm
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Bánh 1 -->
+          <article
+            class="rounded-2xl shadow-lg overflow-hidden bg-white hover:shadow-xl transition duration-300"
+          >
+            <img
+              src="../images/tiramisu.jpg"
+              alt="Bánh Tiramisu"
+              class="w-full h-52 object-cover"
+            />
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Bánh Tiramisu</h3>
+              <p class="text-stone-500 text-sm mb-3">
+                Hương vị Ý kinh điển, kem mascarpone mềm mịn
+              </p>
+              <p class="text-amber-700 font-semibold">95.000₫</p>
+            </div>
+          </article>
+
+          <!-- Bánh 2 -->
+          <article
+            class="rounded-2xl shadow-lg overflow-hidden bg-white hover:shadow-xl transition duration-300"
+          >
+            <img
+              src="../images/red-velvet.jpg"
+              alt="Bánh Red Velvet"
+              class="w-full h-52 object-cover"
+            />
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Bánh Red Velvet</h3>
+              <p class="text-stone-500 text-sm mb-3">
+                Lớp kem cheese cream béo ngậy, màu đỏ quyến rũ
+              </p>
+              <p class="text-amber-700 font-semibold">110.000₫</p>
+            </div>
+          </article>
+
+          <!-- Bánh 3 -->
+          <article
+            class="rounded-2xl shadow-lg overflow-hidden bg-white hover:shadow-xl transition duration-300"
+          >
+            <img
+              src="../images/chocolate.jpg"
+              alt="Bánh Chocolate"
+              class="w-full h-52 object-cover"
+            />
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Bánh Chocolate Đậm</h3>
+              <p class="text-stone-500 text-sm mb-3">
+                Chocolate Bỉ 70%, tan chảy trong miệng
+              </p>
+              <p class="text-amber-700 font-semibold">120.000₫</p>
+            </div>
+          </article>
+
+          <!-- Bánh 4 -->
+          <article
+            class="rounded-2xl shadow-lg overflow-hidden bg-white hover:shadow-xl transition duration-300"
+          >
+            <img
+              src="../images/matcha.jpg"
+              alt="Bánh Matcha"
+              class="w-full h-52 object-cover"
+            />
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Bánh Matcha Nhật</h3>
+              <p class="text-stone-500 text-sm mb-3">
+                Bột matcha Uji nguyên chất, vị thanh mát
+              </p>
+              <p class="text-amber-700 font-semibold">105.000₫</p>
+            </div>
+          </article>
+
+          <!-- Bánh 5 -->
+          <article
+            class="rounded-2xl shadow-lg overflow-hidden bg-white hover:shadow-xl transition duration-300"
+          >
+            <img
+              src="../images/croissant.jpg"
+              alt="Croissant"
+              class="w-full h-52 object-cover"
+            />
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Croissant Bơ Pháp</h3>
+              <p class="text-stone-500 text-sm mb-3">
+                Lớp vỏ giòn tan, nhân bơ đậm đà
+              </p>
+              <p class="text-amber-700 font-semibold">45.000₫</p>
+            </div>
+          </article>
+
+          <!-- Bánh 6 -->
+          <article
+            class="rounded-2xl shadow-lg overflow-hidden bg-white hover:shadow-xl transition duration-300"
+          >
+            <img
+              src="../images/macaron.jpg"
+              alt="Bánh Macaron"
+              class="w-full h-52 object-cover"
+            />
+            <div class="p-5">
+              <h3 class="font-bold text-lg mb-1">Macaron Hộp 6 Vị</h3>
+              <p class="text-stone-500 text-sm mb-3">
+                Vỏ giòn, nhân kem mịn, đủ vị trái cây
+              </p>
+              <p class="text-amber-700 font-semibold">150.000₫</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CÂU CHUYỆN THƯƠNG HIỆU ========== -->
+    <section id="cau-chuyen" class="py-16 bg-amber-50">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="lg:w-1/2">
+            <img
+              src="../images/cau-chuyen.jpg"
+              alt="Bếp bánh thủ công"
+              class="rounded-2xl shadow-lg w-full object-cover"
+            />
+          </div>
+          <div class="lg:w-1/2">
+            <h2 class="text-3xl font-bold mb-4">Câu chuyện thương hiệu</h2>
+            <p class="text-stone-600 leading-relaxed mb-4">
+              Tiệm Bánh được thành lập từ năm 2018 bởi những người yêu bánh
+              ngọt. Chúng tôi tin rằng mỗi chiếc bánh không chỉ là món ăn, mà
+              còn là
+              <strong class="text-amber-700 font-semibold"
+                >sự chăm chút và tình yêu</strong
+              >
+              được gửi gắm.
+            </p>
+            <p class="text-stone-600 leading-relaxed">
+              Mọi nguyên liệu đều được chọn lọc kỹ lưỡng: bột mì hữu cơ, bơ
+              Pháp, chocolate Bỉ và trái cây theo mùa. Mỗi ngày chúng tôi chỉ
+              làm <em class="text-amber-700">một số lượng giới hạn</em> để đảm
+              bảo độ tươi ngon tuyệt đối.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== NỘI DUNG CHÍNH + ASIDE ========== -->
+    <section id="dat-banh" class="py-16">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          <!-- Nội dung chính (col-span-2) -->
+          <div class="lg:col-span-2">
+            <h2 class="text-3xl font-bold mb-6">Đặt bánh theo yêu cầu</h2>
+            <p class="text-stone-600 mb-8">
+              Bạn muốn bánh sinh nhật, bánh cưới hay set trà chiều theo chủ đề
+              riêng? Hãy để lại thông tin, chúng tôi sẽ liên hệ tư vấn trong
+              vòng 2 giờ.
+            </p>
+
+            <!-- FORM đặt bánh -->
+            <form class="space-y-5 bg-white p-6 rounded-2xl shadow-md">
+              <div>
+                <label class="block text-sm font-medium mb-1">Họ và tên</label>
+                <input
+                  type="text"
+                  placeholder="Nguyễn Văn A"
+                  class="w-full border border-stone-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1"
+                  >Số điện thoại</label
+                >
+                <input
+                  type="tel"
+                  placeholder="0901 234 567"
+                  class="w-full border border-stone-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1"
+                  >Loại bánh quan tâm</label
+                >
+                <select
+                  class="w-full border border-stone-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+                >
+                  <option>Bánh sinh nhật</option>
+                  <option>Bánh cưới</option>
+                  <option>Set trà chiều</option>
+                  <option>Bánh theo chủ đề</option>
+                  <option>Khác</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1"
+                  >Ghi chú thêm</label
+                >
+                <textarea
+                  rows="3"
+                  placeholder="Số lượng, ngày nhận, yêu cầu đặc biệt..."
+                  class="w-full border border-stone-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg transition"
+              >
+                Gửi yêu cầu đặt bánh
+              </button>
+            </form>
+          </div>
+
+          <!-- ASIDE -->
+          <aside class="lg:col-span-1">
+            <div
+              class="bg-amber-50 border border-amber-200 rounded-xl p-6 sticky top-24"
+            >
+              <h3 class="font-bold text-lg text-amber-800 mb-3">
+                🎁 Đặt bánh theo yêu cầu
+              </h3>
+              <ul class="space-y-3 text-sm text-stone-700">
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-600">✓</span>
+                  <span>Miễn phí thiết kế mẫu bánh</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-600">✓</span>
+                  <span>Giao hàng tận nơi trong nội thành</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-600">✓</span>
+                  <span>Đặt trước 48h để đảm bảo chất lượng</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amber-600">✓</span>
+                  <span>Có hóa đơn VAT nếu cần</span>
+                </li>
+              </ul>
+              <p
+                class="mt-5 text-xs text-amber-700 bg-amber-100 rounded-lg p-3"
+              >
+                Hotline hỗ trợ: <strong>0901 234 567</strong><br />
+                Thời gian: 8:00 – 20:00 hàng ngày
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer id="lien-he" class="bg-stone-900 text-stone-200 py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Cột 1 -->
+          <div>
+            <h4 class="font-bold text-white mb-3">Atelier Sucré</h4>
+            <p class="text-sm text-stone-400">
+              123 Lê Văn Việt, Quận 9<br />
+              TP. Hồ Chí Minh
+            </p>
+          </div>
+          <!-- Cột 2 -->
+          <div>
+            <h4 class="font-bold text-white mb-3">Giờ mở cửa</h4>
+            <p class="text-sm text-stone-400">
+              Thứ 2 – Thứ 6: 8:00 – 20:00<br />
+              Thứ 7 – CN: 8:00 – 21:00
+            </p>
+          </div>
+          <!-- Cột 3 -->
+          <div>
+            <h4 class="font-bold text-white mb-3">Liên hệ</h4>
+            <p class="text-sm text-stone-400">
+              📞 0901 234 567<br />
+              ✉️ contact@Atelier Sucré.vn
+            </p>
+          </div>
+          <!-- Cột 4 -->
+          <div>
+            <h4 class="font-bold text-white mb-3">Mạng xã hội</h4>
+            <div class="flex gap-4 text-sm">
+              <a href="#" class="hover:text-amber-400 transition">Facebook</a>
+              <a href="#" class="hover:text-amber-400 transition">Instagram</a>
+              <a href="#" class="hover:text-amber-400 transition">TikTok</a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-stone-700 mt-10 pt-6 text-center text-sm text-stone-500"
+        >
+          © 2024 Tiệm Bánh Ngọt Hương Vị Thủ Công. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="../js/script.js"></script>
+  </body>
+</html>
