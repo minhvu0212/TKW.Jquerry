@@ -1,0 +1,93 @@
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    padding: 32px 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef2f7;
+    color: #1f2937;
+    transition: background .2s, color .2s;
+}
+main { max-width: 850px; margin: 0 auto; }
+h1 { margin: 0 0 22px; color: #173b66; font-size: 28px; }
+h2 { margin-top: 0; }
+p { line-height: 1.55; }
+.panel, .accordion {
+    background: #fff;
+    border: 1px solid #d9e1ea;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 5px 18px rgba(23, 59, 102, .06);
+}
+label { display: block; font-weight: 600; margin: 0 0 8px; }
+input[type="text"], input[type="password"], input[type="email"], input[type="date"], input[type="file"] {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    font: inherit;
+    background: #fff;
+    color: #1f2937;
+    margin-bottom: 14px;
+}
+input[type="radio"], input[type="checkbox"] { width: auto; }
+button {
+    border: 0;
+    border-radius: 7px;
+    background: #1f609e;
+    color: white;
+    padding: 10px 16px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+button:hover { background: #174a7a; }
+.inline { display: inline-flex; align-items: center; gap: 6px; margin: 0 16px 12px 0; font-weight: 400; }
+.extra { margin-top: 12px; padding: 14px; border-radius: 8px; background: #f1f6fb; }
+.hidden { display: none; }
+.password-row { display: flex; gap: 8px; align-items: flex-start; }
+.password-row input { flex: 1; }
+.password-row button { min-width: 48px; min-height: 42px; }
+.hint { color: #526477; font-size: 14px; }
+.switch-row { display: flex; align-items: center; gap: 14px; margin: 22px 0; }
+.switch { position: relative; display: inline-block; width: 54px; height: 30px; margin: 0; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; inset: 0; background: #64748b; border-radius: 30px; transition: .2s; }
+.slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 4px; bottom: 4px; background: white; border-radius: 50%; transition: .2s; }
+.switch input:checked + .slider { background: #18865c; }
+.switch input:checked + .slider:before { transform: translateX(24px); }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid #d9e1ea; margin-bottom: 18px; }
+.tab { background: #e8eef5; color: #23415f; border-radius: 7px 7px 0 0; }
+.tab.active { background: #1f609e; color: white; }
+.tab-content { display: none; min-height: 100px; padding: 12px 4px; }
+.tab-content.active { display: block; }
+.form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.danger { background: #b42332; margin-left: 8px; }
+.danger:hover { background: #8e1b27; }
+.table-panel { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px; border-bottom: 1px solid #dbe3ec; text-align: left; }
+th { background: #eaf1f8; color: #173b66; }
+td input { margin: 0; }
+.accordion { padding: 0; overflow: hidden; }
+.accordion-item + .accordion-item { border-top: 1px solid #d9e1ea; }
+.accordion-heading { display: block; width: 100%; text-align: left; border-radius: 0; padding: 16px 20px; background: #eaf1f8; color: #173b66; }
+.accordion-heading.open { background: #1f609e; color: white; }
+.accordion-content { padding: 6px 20px 18px; }
+body.light-theme { background: #eef2f7; color: #1f2937; }
+body.dark-theme { background: #111827; color: #f3f4f6; }
+body.dark-theme h1 { color: #a7d4ff; }
+body.dark-theme .panel, body.dark-theme .accordion { background: #1f2937; border-color: #374151; color: #f3f4f6; }
+body.dark-theme input[type="text"], body.dark-theme input[type="password"], body.dark-theme input[type="email"], body.dark-theme input[type="date"], body.dark-theme input[type="file"] { background: #111827; color: #f9fafb; border-color: #4b5563; }
+body.dark-theme .hint { color: #cbd5e1; }
+body.dark-theme .extra, body.dark-theme th, body.dark-theme .tab { background: #374151; color: #f3f4f6; }
+body.dark-theme .tabs { border-color: #4b5563; }
+body.dark-theme th, body.dark-theme td { border-color: #4b5563; }
+body.dark-theme .tab.active { background: #1f609e; }
+@media (max-width: 650px) {
+    body { padding: 20px 12px; }
+    h1 { font-size: 23px; }
+    .form-grid { grid-template-columns: 1fr; gap: 0; }
+    .panel { padding: 16px; }
+}

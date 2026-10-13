@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 12 - Hiển thị thông tin hộ chiếu và thẻ tín dụng</title>
+    <link rel="stylesheet" href="Styles/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="Scripts/script.js" defer></script>
+</head>
+<body class="light-theme">
+<main>
+<h1>Câu 12: Thông tin bổ sung</h1>
+<div class="panel">
+  <div class="question">
+    <label>Bạn có hộ chiếu không?</label>
+    <label class="inline"><input type="radio" name="passport" value="yes"> Yes</label>
+    <label class="inline"><input type="radio" name="passport" value="no" checked> No</label>
+    <div id="passportBox" class="extra hidden">
+      <label for="passportNumber">Số hộ chiếu</label>
+      <input type="text" id="passportNumber" placeholder="Nhập số hộ chiếu">
+    </div>
+  </div>
+  <div class="question">
+    <label>Bạn có thẻ tín dụng không?</label>
+    <label class="inline"><input type="radio" name="credit" value="yes"> Yes</label>
+    <label class="inline"><input type="radio" name="credit" value="no" checked> No</label>
+    <div id="creditBox" class="extra hidden">
+      <label for="creditNumber">Số thẻ tín dụng</label>
+      <input type="text" id="creditNumber" placeholder="Nhập số thẻ tín dụng">
+    </div>
+  </div>
+</div>
+</main>
+</body>
+</html>

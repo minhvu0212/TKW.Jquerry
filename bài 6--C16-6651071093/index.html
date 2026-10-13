@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 16 - Thêm và xóa dòng dữ liệu</title>
+    <link rel="stylesheet" href="Styles/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="Scripts/script.js" defer></script>
+</head>
+<body class="light-theme">
+<main>
+<h1>Câu 16: Quản lý danh sách</h1>
+<div class="panel">
+  <form id="personForm">
+    <div class="form-grid">
+      <div><label for="name">Họ tên</label><input id="name" type="text" required></div>
+      <div><label for="email">Email</label><input id="email" type="email" required placeholder="ten@example.com"></div>
+      <div><label for="birthdate">Ngày sinh</label><input id="birthdate" type="date" required></div>
+    </div>
+    <button type="submit">Add Row</button>
+    <button type="button" id="deleteRows" class="danger">Delete Row</button>
+    <p id="formMessage" class="hint">Nhập đủ thông tin rồi chọn Add Row.</p>
+  </form>
+</div>
+<div class="panel table-panel">
+  <table>
+    <thead><tr><th>Chọn</th><th>Họ tên</th><th>Email</th><th>Ngày sinh</th></tr></thead>
+    <tbody id="peopleTable"></tbody>
+  </table>
+</div>
+</main>
+</body>
+</html>
